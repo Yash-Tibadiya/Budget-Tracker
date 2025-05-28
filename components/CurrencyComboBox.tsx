@@ -1,8 +1,5 @@
 "use client";
 
-import * as React from "react";
-
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -12,32 +9,32 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Currencies, Currency } from "@/lib/currencies";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import SkeletonWrapper from "./SkeletonWrapper";
-import { UpdateUserCurrency } from "@/app/wizard/_actions/userSettings";
 import { toast } from "sonner";
 import { UserSettings } from "@prisma/client";
+import SkeletonWrapper from "./SkeletonWrapper";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Currencies, Currency } from "@/lib/currencies";
+import { useCallback, useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { UpdateUserCurrency } from "@/app/wizard/_actions/userSettings";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 export function CurrencyComboBox() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedOption, setSelectedOption] = React.useState<Currency | null>(
-    null
-  );
+  const [selectedOption, setSelectedOption] = useState<Currency | null>(null);
 
   const userSettings = useQuery<UserSettings>({
     queryKey: ["userSettings"],
     queryFn: () => fetch("/api/user-settings").then((res) => res.json()),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!userSettings.data) return;
     const userCurrency = Currencies.find(
       (currency) => currency.value === userSettings.data.currency
@@ -65,7 +62,7 @@ export function CurrencyComboBox() {
     },
   });
 
-  const selectOption = React.useCallback(
+  const selectOption = useCallback(
     (currency: Currency | null) => {
       if (!currency) {
         toast.error("please select a currency");
