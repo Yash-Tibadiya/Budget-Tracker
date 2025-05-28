@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -17,6 +16,7 @@ import {
 import { toast } from "sonner";
 import { UserSettings } from "@prisma/client";
 import SkeletonWrapper from "./SkeletonWrapper";
+import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Currencies, Currency } from "@/lib/currencies";
 import { useCallback, useEffect, useState } from "react";
@@ -27,7 +27,9 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 export function CurrencyComboBox() {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedOption, setSelectedOption] = useState<Currency | null>(null);
+  const [selectedOption, setSelectedOption] = useState<Currency | null>(
+    null
+  );
 
   const userSettings = useQuery<UserSettings>({
     queryKey: ["userSettings"],
