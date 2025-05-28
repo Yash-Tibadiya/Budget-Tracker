@@ -1,5 +1,31 @@
-const Page = () => {
-  return <div>Page</div>;
+import prisma from "@/lib/prisma";
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+
+const Page = async () => {
+  const user = await currentUser();
+  if (!user) {
+    redirect("/sign-in");
+  }
+
+  const userSettings = await prisma.userSettings.findUnique({
+    where: {
+      userId: user.id,
+    },
+  });
+  if (!userSettings) {
+    redirect("/wizard");
+  }
+
+  return <div className="h-full bg-background">
+    <div className="border-b bg-card">
+      <div className="flex flex-wrap container items-center justify-between gap-6 py-8">
+        <p className="text-3xl font-bold">
+          Hello, {user.firstName}
+        </p>
+      </div>
+    </div>
+  </div>;
 };
 
 export default Page;
