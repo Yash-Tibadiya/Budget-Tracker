@@ -4,9 +4,6 @@ import {
   createCategorySchema,
   createCategorySchemaType,
 } from "@/schema/categories";
-import { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
-import { TransactionType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
@@ -18,9 +15,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { CircleOff, Loader2, PlusSquare } from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -29,19 +23,25 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateCategory } from "../_actions/categories";
-import { Category } from "@prisma/client";
-import { toast } from "sonner";
 import { useTheme } from "next-themes";
+import { Category } from "@prisma/client";
+import { useForm } from "react-hook-form";
+import { useCallback, useState } from "react";
+import { TransactionType } from "@/lib/types";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { CreateCategory } from "../_actions/categories";
+import { CircleOff, Loader2, PlusSquare } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
   type: TransactionType;
