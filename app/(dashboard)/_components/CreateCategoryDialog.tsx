@@ -98,7 +98,7 @@ const CreateCategoryDialog = ({ type }: Props) => {
   );
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen} modal={false}>
       <DialogTrigger asChild>
         <Button
           variant={"ghost"}
@@ -123,7 +123,7 @@ const CreateCategoryDialog = ({ type }: Props) => {
             category
           </DialogTitle>
           <DialogDescription>
-            Caregories are used to group your transactions.
+            Categories are used to group your transactions.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -178,10 +178,25 @@ const CreateCategoryDialog = ({ type }: Props) => {
                           )}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-full">
+                      <PopoverContent
+                        className="w-full"
+                        onWheel={(e) => {
+                          e.stopPropagation();
+                        }}
+                        onTouchStart={(e) => {
+                          e.stopPropagation();
+                        }}
+                        onTouchMove={(e) => {
+                          e.stopPropagation();
+                        }}
+                        onTouchEnd={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <Picker
                           data={data}
                           theme={theme.resolvedTheme}
+                          skinTonePosition="search"
                           onEmojiSelect={(emoji: { native: string }) => {
                             field.onChange(emoji.native);
                           }}
