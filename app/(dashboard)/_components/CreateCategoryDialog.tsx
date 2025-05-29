@@ -138,7 +138,17 @@ const CreateCategoryDialog = ({ type, successCallback }: Props) => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input defaultValue={""} {...field} />
+                    {type === "income" ? (
+                      <Input
+                        placeholder="eg. Salary, Bonuses, etc..."
+                        {...field}
+                      />
+                    ) : (
+                      <Input
+                        placeholder="eg. Groceries, Entertainment, etc..."
+                        {...field}
+                      />
+                    )}
                   </FormControl>
                   <FormDescription>
                     This is how your category will appear in the app

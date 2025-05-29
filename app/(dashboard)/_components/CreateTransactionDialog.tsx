@@ -23,8 +23,14 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import { format } from "date-fns";
+import { useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import CategoryPicker from "./CategoryPicker";
+import { Popover } from "@/components/ui/popover";
+import { PopoverTrigger } from "@radix-ui/react-popover";
+import { Button } from "@/components/ui/button";
+import { CalendarIcon } from "lucide-react";
 
 interface Props {
   trigger: React.ReactNode;
@@ -39,6 +45,13 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
       date: new Date(),
     },
   });
+
+  const handleCategoryChange = useCallback(
+    (value: string) => {
+      form.setValue("category", value);
+    },
+    [form]
+  );
 
   return (
     <Dialog>
@@ -70,7 +83,14 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input defaultValue={""} {...field} />
+                    {type === "income" ? (
+                      <Input placeholder="eg. May 2025 Salary" {...field} />
+                    ) : (
+                      <Input
+                        placeholder="eg. Netflix Subscription"
+                        {...field}
+                      />
+                    )}
                   </FormControl>
                   <FormDescription>
                     Transaction description (optional)
@@ -96,8 +116,8 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
               )}
             />
 
-            {/* Category */}
             <div className="flex ietems-center justify-between gap-2">
+              {/* Category */}
               <FormField
                 control={form.control}
                 name="category"
@@ -105,10 +125,47 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                   <FormItem>
                     <FormLabel>Category</FormLabel>
                     <FormControl>
-                      <CategoryPicker type={type}/>
+                      <CategoryPicker
+                        type={type}
+                        onChange={handleCategoryChange}
+                      />
                     </FormControl>
                     <FormDescription>
                       Select a category for this transaction
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+
+              {/* Date */}
+              <FormField
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Transaction date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "w-[200px] pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                    </Popover>
+                    <FormDescription>
+                      Select a date for this transaction
                     </FormDescription>
                   </FormItem>
                 )}
