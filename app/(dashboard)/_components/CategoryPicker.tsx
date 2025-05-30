@@ -66,7 +66,7 @@ const CategoryPicker = ({ type, onChange }: Props) => {
           variant={"outline"}
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] ml-3 justify-between"
+          className="w-[200px] justify-between"
         >
           {selectedCategory ? (
             <CatergoryRow category={selectedCategory} />
