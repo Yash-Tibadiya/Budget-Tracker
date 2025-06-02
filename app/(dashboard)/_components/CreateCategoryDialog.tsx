@@ -46,9 +46,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 interface Props {
   type: TransactionType;
   successCallback: (category: Category) => void;
+  trigger?: React.ReactNode;
 }
 
-const CreateCategoryDialog = ({ type, successCallback }: Props) => {
+const CreateCategoryDialog = ({ type, successCallback, trigger }: Props) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<createCategorySchemaType>({
@@ -103,13 +104,17 @@ const CreateCategoryDialog = ({ type, successCallback }: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={false}>
       <DialogTrigger asChild>
-        <Button
-          variant={"ghost"}
-          className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
-        >
-          <PlusSquare className="mr-2 h-4 w-4" />
-          Create new
-        </Button>
+        {trigger ? (
+          trigger
+        ) : (
+          <Button
+            variant={"ghost"}
+            className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
+          >
+            <PlusSquare className="mr-2 h-4 w-4" />
+            Create new
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
