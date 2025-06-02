@@ -27,7 +27,7 @@ const Overview = ({ userSettings }: { userSettings: UserSettings }) => {
               // we update the date range only if both dates are set
 
               if (!from || !to) return;
-              if (differenceInDays(from, to) > MAX_DATE_RANGE_DAYS) {
+              if (differenceInDays(to, from) > MAX_DATE_RANGE_DAYS) {
                 toast.error(
                   `The selected date range is too big. Max allowed range is ${MAX_DATE_RANGE_DAYS} days!`
                 );
