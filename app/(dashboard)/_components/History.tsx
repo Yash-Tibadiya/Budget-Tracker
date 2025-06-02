@@ -96,7 +96,7 @@ const History = ({ userSettings }: { userSettings: UserSettings }) => {
                       <stop
                         offset={"1"}
                         stopColor="#10b981"
-                        stopOpacity={"0.2"}
+                        stopOpacity={"0"}
                       />
                     </linearGradient>
 
@@ -109,7 +109,7 @@ const History = ({ userSettings }: { userSettings: UserSettings }) => {
                       <stop
                         offset={"1"}
                         stopColor="#ef4444"
-                        stopOpacity={"0.2"}
+                        stopOpacity={"0"}
                       />
                     </linearGradient>
                   </defs>
