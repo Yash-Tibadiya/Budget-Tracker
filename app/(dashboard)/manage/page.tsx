@@ -22,7 +22,7 @@ import DeleteCategoryDialog from "../_components/DeleteCategoryDialog";
 function page() {
   return (
     <>
-      <div className="border-b bg-card mb-24">
+      <div className="border-b bg-card">
         <div className="container flex flex-wrap items-center justify-between gap-6 py-8">
           <div>
             <p className="text-3xl font-bold">Manage</p>
@@ -33,7 +33,7 @@ function page() {
         </div>
       </div>
       {/*END HEADER*/}
-      <div className="container flex flex-col gap-4 p-4">
+      <div className="container flex flex-col gap-4 p-4 mb-24">
         <Card>
           <CardHeader>
             <CardTitle>Category</CardTitle>
