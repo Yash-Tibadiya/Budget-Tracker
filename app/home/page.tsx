@@ -93,20 +93,66 @@ export default function LandingPage() {
         <section className="w-full py-12 border-y bg-muted/30">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <p className="text-sm font-medium text-muted-foreground">
+              <p className="text-2xl font-medium text-white mb-12">
                 Trusted by innovative companies worldwide
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Image
-                    key={i}
-                    src={`/placeholder-logo.svg`}
-                    alt={`Company logo ${i}`}
-                    width={120}
-                    height={60}
-                    className="h-8 w-auto opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
-                  />
-                ))}
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16 px-20">
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                  alt="Nvidia Logo"
+                  height={20}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/github.svg"
+                  alt="GitHub Logo"
+                  height={16}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/nike.svg"
+                  alt="Nike Logo"
+                  height={20}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/openai.svg"
+                  alt="OpenAI Logo"
+                  height={24}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/tailwindcss.svg"
+                  alt="Tailwind CSS Logo"
+                  height={16}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/vercel.svg"
+                  alt="Vercel Logo"
+                  height={20}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/zapier.svg"
+                  alt="Zapier Logo"
+                  height={20}
+                  width={20}
+                />
+                <Image
+                  className="h-8 w-auto dark:invert opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0"
+                  src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
+                  alt="Zapier Logo"
+                  height={20}
+                  width={20}
+                />
               </div>
             </div>
           </div>
