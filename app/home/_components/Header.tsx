@@ -8,12 +8,15 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Logo from "@/components/Logo";
 import { ThemeSwitcherBtn } from "@/components/ThemeSwitcherBtn";
+import { SvgArrow } from "@/components/Icons";
+import { useUser } from "@clerk/nextjs";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { user, isLoaded } = useUser();
 
   useEffect(() => {
     setMounted(true);
@@ -71,10 +74,23 @@ const Header = () => {
         </nav>
         <div className="hidden md:flex gap-4 items-center">
           <ThemeSwitcherBtn />
-          <Button className="rounded-full">
-            <Link href="#">Log in</Link>
-            <ChevronRight className="ml-1 size-4" />
-          </Button>
+          {isLoaded && user ? (
+            <Link
+              href="/"
+              className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+            >
+              <span className="transition-colors duration-700">Dashboard</span>
+              <SvgArrow />
+            </Link>
+          ) : (
+            <Link
+              href="/sign-in"
+              className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+            >
+              <span className="transition-colors duration-700">Log in</span>
+              <SvgArrow />
+            </Link>
+          )}
         </div>
         <div className="flex items-center gap-4 md:hidden">
           <Button
@@ -141,15 +157,21 @@ const Header = () => {
               FAQ
             </Link>
             <div className="flex flex-col gap-2">
-              <Button className="rounded-full">
-                <Link
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Log in
-                </Link>
-                <ChevronRight className="ml-1 size-4" />
-              </Button>
+              {isLoaded && user ? (
+                <Button className="rounded-full">
+                  <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                    Dashboard
+                  </Link>
+                  <ChevronRight className="ml-1 size-4" />
+                </Button>
+              ) : (
+                <Button className="rounded-full">
+                  <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                    Log in
+                  </Link>
+                  <ChevronRight className="ml-1 size-4" />
+                </Button>
+              )}
             </div>
           </div>
         </motion.div>
