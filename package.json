@@ -52,6 +52,7 @@
     "embla-carousel-react": "^8.6.0",
     "eslint": "^9.27.0",
     "export-to-csv": "^1.4.0",
+    "framer-motion": "^12.19.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.511.0",
     "next": "14.2.29",
