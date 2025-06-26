@@ -159,14 +159,20 @@ const Header = () => {
             <div className="flex flex-col gap-2">
               {isLoaded && user ? (
                 <Button className="rounded-full">
-                  <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    href="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Dashboard
                   </Link>
                   <ChevronRight className="ml-1 size-4" />
                 </Button>
               ) : (
                 <Button className="rounded-full">
-                  <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    href="/sign-in"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Log in
                   </Link>
                   <ChevronRight className="ml-1 size-4" />
