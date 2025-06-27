@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import Logo from "@/components/Logo";
 import { ThemeSwitcherBtn } from "@/components/ThemeSwitcherBtn";
 import { SvgArrow, SvgPiggyBank } from "@/components/Icons";
 import { useUser } from "@clerk/nextjs";
@@ -14,12 +13,9 @@ import { useUser } from "@clerk/nextjs";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const { user, isLoaded } = useUser();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
@@ -32,21 +28,17 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   return (
     <header
       className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
         isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between gap-3">
+      <div className="lg:container mx-auto px-5 lg:px-10 flex h-16 items-center justify-between gap-3">
         <div className="flex items-center gap-2 font-bold">
           <Link href="/" className="flex items-center gap-2">
             <SvgPiggyBank />
-            <p className="bg-gradient-to-r from-amber-600/90 dark:from-amber-400 to-orange-600/90 dark:to-orange-500 bg-clip-text text-xl md:text-3xl font-bold leading-tight tracking-tighter text-transparent">
+            <p className="bg-gradient-to-r from-amber-600/90 dark:from-amber-400 to-orange-600/90 dark:to-orange-500 bg-clip-text text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tighter text-transparent">
               BudgetTracker
             </p>
           </Link>
@@ -154,7 +146,7 @@ const Header = () => {
               {isLoaded && user ? (
                 <Link
                   href="/"
-                  className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+                  className="flex justify-center w-full gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
                 >
                   <span className="transition-colors duration-700">
                     Dashboard
@@ -164,7 +156,7 @@ const Header = () => {
               ) : (
                 <Link
                   href="/sign-in"
-                  className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+                  className="flex justify-center w-full gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
                 >
                   <span className="transition-colors duration-700">Log in</span>
                   <SvgArrow />
