@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ChevronRight, Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Logo from "@/components/Logo";
 import { ThemeSwitcherBtn } from "@/components/ThemeSwitcherBtn";
-import { SvgArrow } from "@/components/Icons";
+import { SvgArrow, SvgPiggyBank } from "@/components/Icons";
 import { useUser } from "@clerk/nextjs";
 
 const Header = () => {
@@ -42,9 +42,14 @@ const Header = () => {
         isScrolled ? "bg-background/80 shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between gap-3">
         <div className="flex items-center gap-2 font-bold">
-          <Logo />
+          <a href="/" className="flex items-center gap-2">
+            <SvgPiggyBank />
+            <p className="bg-gradient-to-r from-amber-600/90 dark:from-amber-400 to-orange-600/90 dark:to-orange-500 bg-clip-text text-xl md:text-3xl font-bold leading-tight tracking-tighter text-transparent">
+              BudgetTracker
+            </p>
+          </a>
         </div>
         <nav className="hidden md:flex gap-8">
           <Link
@@ -77,7 +82,7 @@ const Header = () => {
           {isLoaded && user ? (
             <Link
               href="/"
-              className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+              className="flex justify-center gap-1 items-center mx-auto shadow-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
             >
               <span className="transition-colors duration-700">Dashboard</span>
               <SvgArrow />
@@ -85,7 +90,7 @@ const Header = () => {
           ) : (
             <Link
               href="/sign-in"
-              className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+              className="flex justify-center gap-1 items-center mx-auto shadow-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
             >
               <span className="transition-colors duration-700">Log in</span>
               <SvgArrow />
@@ -93,18 +98,7 @@ const Header = () => {
           )}
         </div>
         <div className="flex items-center gap-4 md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full"
-          >
-            {mounted && theme === "dark" ? (
-              <Sun className="size-[18px]" />
-            ) : (
-              <Moon className="size-[18px]" />
-            )}
-          </Button>
+          <ThemeSwitcherBtn />
           <Button
             variant="ghost"
             size="icon"
@@ -158,25 +152,23 @@ const Header = () => {
             </Link>
             <div className="flex flex-col gap-2">
               {isLoaded && user ? (
-                <Button className="rounded-full">
-                  <Link
-                    href="/"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                <Link
+                  href="/"
+                  className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+                >
+                  <span className="transition-colors duration-700">
                     Dashboard
-                  </Link>
-                  <ChevronRight className="ml-1 size-4" />
-                </Button>
+                  </span>
+                  <SvgArrow />
+                </Link>
               ) : (
-                <Button className="rounded-full">
-                  <Link
-                    href="/sign-in"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Log in
-                  </Link>
-                  <ChevronRight className="ml-1 size-4" />
-                </Button>
+                <Link
+                  href="/sign-in"
+                  className="flex justify-center gap-1 items-center mx-auto shadow-xl bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 pl-4 overflow-hidden rounded-full group"
+                >
+                  <span className="transition-colors duration-700">Log in</span>
+                  <SvgArrow />
+                </Link>
               )}
             </div>
           </div>
