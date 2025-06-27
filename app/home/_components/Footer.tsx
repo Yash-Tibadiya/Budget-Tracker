@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="grid gap-6 xl:gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 font-bold">
-              <a
+              <Link
                 href="/"
                 className="flex items-center gap-1 sm:gap-2 hover:opacity-80 transition-opacity"
               >
@@ -32,7 +32,7 @@ const Footer = () => {
                 <p className="bg-gradient-to-r from-amber-600/90 dark:from-amber-400 to-orange-600/90 dark:to-orange-500 bg-clip-text text-3xl sm:text-3xl md:text-xl lg:text-3xl xl:text-4xl font-bold leading-tight tracking-tighter text-transparent">
                   BudgetTracker
                 </p>
-              </a>
+              </Link>
             </div>
             <p className="text-sm text-muted-foreground">
               Streamline your workflow with our all-in-one SaaS platform. Boost
