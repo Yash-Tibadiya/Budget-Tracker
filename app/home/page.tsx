@@ -1,49 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Check,
-  ArrowRight,
-  Star,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { Check, ArrowRight, Star } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import Header from "./_components/Header";
 import Hero from "./_components/Hero";
-
-import trustedCompanies from "./data/trusted-companies.json";
-import howItWorksSteps from "./data/how-it-works.json";
-import testimonials from "./data/testimonials.json";
-import pricingPlans from "./data/pricing-plans.json";
-import faqs from "./data/faq.json";
 import Features from "./_components/Features";
-import Image from "next/image";
-import Link from "next/link";
+import HowItWorks from "./_components/HowItWorks";
+
+import { trustedCompanies } from "./data/trusted-companies";
+import { faqs } from "./data/faq";
+import { pricingPlans } from "./data/pricing-plans";
+import { testimonials } from "./data/testimonials";
 
 export default function LandingPage() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
-
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <Header />
@@ -78,54 +60,7 @@ export default function LandingPage() {
         <Features />
 
         {/* How It Works Section */}
-        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
-
-          <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-            >
-              <Badge
-                className="rounded-full px-4 py-1.5 text-sm font-medium"
-                variant="secondary"
-              >
-                How It Works
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Simple Process, Powerful Results
-              </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Get started in minutes and see the difference our platform can
-                make for your business.
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
-              <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
-
-              {howItWorksSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative z-10 flex flex-col items-center text-center space-y-4"
-                >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
-                    {step.step}
-                  </div>
-                  <h3 className="text-xl font-bold">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HowItWorks />
 
         {/* Testimonials Section */}
         <section id="testimonials" className="w-full py-20 md:py-32">
@@ -263,7 +198,7 @@ export default function LandingPage() {
                             <h3 className="text-2xl font-bold">{plan.name}</h3>
                             <div className="flex items-baseline mt-4">
                               <span className="text-4xl font-bold">
-                                {plan.price}
+                                ${plan.price}
                               </span>
                               <span className="text-muted-foreground ml-1">
                                 /month
@@ -322,7 +257,7 @@ export default function LandingPage() {
                             <h3 className="text-2xl font-bold">{plan.name}</h3>
                             <div className="flex items-baseline mt-4">
                               <span className="text-4xl font-bold">
-                                {plan.price}
+                                ${Number(plan.price) * 11}
                               </span>
                               <span className="text-muted-foreground ml-1">
                                 /year

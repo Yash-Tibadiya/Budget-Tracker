@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Star, Zap, Shield, Users, BarChart, Layers } from "lucide-react";
+import { Star, Zap, Shield, BarChart, Layers, AudioWaveform } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import features from "./../data/features.json";
+import { features } from "../data/features";
 
 const Features = () => {
   const container = {
@@ -37,12 +37,12 @@ const Features = () => {
             Features
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Everything You Need to Succeed
+            All You Need to Manage Your Budget
           </h2>
           <p className="max-w-[800px] text-muted-foreground md:text-lg">
-            Our comprehensive platform provides all the tools you need to
-            streamline your workflow, boost productivity, and achieve your
-            goals.
+            Our powerful platform provides all the tools you need to take
+            control of your finances, track your spending, and make informed
+            decisions to achieve your financial goals.
           </p>
         </motion.div>
 
@@ -59,7 +59,7 @@ const Features = () => {
               {
                 Zap: Zap,
                 BarChart: BarChart,
-                Users: Users,
+                AudioWaveform: AudioWaveform,
                 Shield: Shield,
                 Layers: Layers,
                 Star: Star,
