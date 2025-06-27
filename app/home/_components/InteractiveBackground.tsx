@@ -27,6 +27,8 @@ const InteractiveBackground: React.FC = () => {
       speedX: number;
       speedY: number;
       color: string;
+      radiusX: number;
+      radiusY: number;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
@@ -34,6 +36,8 @@ const InteractiveBackground: React.FC = () => {
         this.size = Math.random() * 5 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
+        this.radiusX = this.size * (1 + Math.random() * 0.5); // Vary radiusX
+        this.radiusY = this.size * (1 - Math.random() * 0.5); // Vary radiusY
         this.color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
           Math.random() * 255
         )}, 255, 0.7)`;
@@ -50,7 +54,15 @@ const InteractiveBackground: React.FC = () => {
       draw() {
         ctx!.fillStyle = this.color;
         ctx!.beginPath();
-        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx!.ellipse(
+          this.x,
+          this.y,
+          this.radiusX,
+          this.radiusY,
+          0,
+          0,
+          Math.PI * 2
+        );
         ctx!.fill();
       }
     }
@@ -95,7 +107,7 @@ const InteractiveBackground: React.FC = () => {
   }, []);
 
   return (
-    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full -z-10" />
+    <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10" />
   );
 };
 

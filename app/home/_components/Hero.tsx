@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SvgArrow } from "@/components/Icons";
+import InteractiveBackground from "./InteractiveBackground";
 
 const Hero = () => {
   return (
-    <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative w-full py-20 md:py-32 lg:py-40 overflow-hidden">
+      <InteractiveBackground />
       <div className="container px-4 md:px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
