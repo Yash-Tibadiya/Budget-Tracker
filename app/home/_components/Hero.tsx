@@ -37,7 +37,7 @@ const Hero = () => {
           </p>
           <div className="flex justify-center">
             <Link
-              href="/"
+              href="/sign-in"
               className="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 pl-5 overflow-hidden rounded-full group"
             >
               <span className="transition-colors duration-700">
