@@ -31,7 +31,7 @@ const HowItWorks = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
+          <div className="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-black/30 dark:via-white/40 to-transparent -translate-y-1/2 z-0"></div>
 
           {howItWorksSteps.map((step, i) => (
             <motion.div
@@ -42,7 +42,7 @@ const HowItWorks = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="relative z-10 flex flex-col items-center text-center space-y-4"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-xl font-bold shadow-lg">
                 {step.step}
               </div>
               <h3 className="text-xl font-bold">{step.title}</h3>

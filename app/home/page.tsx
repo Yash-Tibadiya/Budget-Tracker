@@ -169,7 +169,7 @@ export default function LandingPage() {
                       Monthly
                     </TabsTrigger>
                     <TabsTrigger value="annually" className="rounded-full px-6">
-                      Annually (Save 20%)
+                      Annually (1 Month Free)
                     </TabsTrigger>
                   </TabsList>
                 </div>
@@ -393,7 +393,7 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      
+
       {/* Footer Section */}
       <Footer />
     </div>
