@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { testimonials } from "../data/testimonials";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import { AnimatedTestimonials } from "./Animation/animated-testimonials";
 
 const Testimonials = () => {
   return (
@@ -30,8 +31,8 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial, i) => (
+        <div>
+          {/* {testimonials.map((testimonial, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -66,7 +67,8 @@ const Testimonials = () => {
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
+          ))} */}
+          <AnimatedTestimonials testimonials={testimonials} />
         </div>
       </div>
     </section>
