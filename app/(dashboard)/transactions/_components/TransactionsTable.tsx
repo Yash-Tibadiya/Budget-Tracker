@@ -196,7 +196,7 @@ function TransactionsTable({ from, to }: Props) {
 
   // Add this line to inspect the data
   if (History.data) {
-    console.log("History.data:", History.data);
+    // console.log("History.data:", History.data);
     History.data.forEach((item, index) => {
       if (!item) {
         console.error(`Undefined item at index ${index} in History.data`);
