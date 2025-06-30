@@ -97,8 +97,8 @@ export default function CategorySelector() {
                   whitespace-nowrap overflow-hidden ring-1 ring-inset 
                   ${
                     isSelected
-                      ? "text-[#ff9066] ring-[hsla(0,0%,100%,0.12)]"
-                      : "dark:text-zinc-400 text-zinc-700 dark:ring-[hsla(0,0%,100%,0.06)] ring-orange-500/30 dark:bg-zinc-800/50 bg-gray-100/50 dark:hover:bg-zinc-700/80 hover:bg-gray-200/80"
+                      ? "text-[#ff9066] ring-[hsla(0,0%,100%,0.12)] shadow-xl dark-shadow-zinc-700/80"
+                      : "dark:text-zinc-400 hover:dark:text-zinc-300 text-zinc-700 hover:text-zinc-900 dark:ring-[hsla(0,0%,100%,0.06)] ring-orange-500/30 dark:bg-zinc-800/50 bg-gray-100/50 dark:hover:bg-zinc-700/80 hover:bg-gray-200/80 shadow-md hover:shadow-lg dark:shadow-zinc-700/80"
                   }
                 `}
                 style={{
