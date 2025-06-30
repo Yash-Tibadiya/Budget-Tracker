@@ -1,12 +1,52 @@
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { pricingPlans } from "../data/pricing-plans";
+import { useState, useRef } from "react";
+import confetti from "canvas-confetti";
 
 const Pricing = () => {
+  const [activeTab, setActiveTab] = useState("monthly");
+  const tabsListRef = useRef<HTMLDivElement>(null);
+
+  const handleToggle = (value: string) => {
+    setActiveTab(value);
+
+    // Trigger confetti when switching to annually
+    if (value === "annually" && tabsListRef.current) {
+      const rect = tabsListRef.current.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: {
+          x: x / window.innerWidth,
+          y: y / window.innerHeight,
+        },
+        colors: [
+          // "hsl(var(--primary))",
+          // "hsl(var(--accent))",
+          // "hsl(var(--secondary))",
+          // "hsl(var(--muted))",
+          "#f59e0b", // amber-500
+          "#f97316", // orange-500
+          "#fbbf24", // amber-400
+          "#fb923c", // orange-400
+        ],
+        ticks: 200,
+        gravity: 1.2,
+        decay: 0.94,
+        startVelocity: 30,
+        shapes: ["circle"],
+      });
+    }
+  };
+
   return (
     <section
       id="pricing"
@@ -38,9 +78,13 @@ const Pricing = () => {
         </motion.div>
 
         <div className="mx-auto max-w-5xl">
-          <Tabs defaultValue="monthly" className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={handleToggle}
+            className="w-full"
+          >
             <div className="flex justify-center mb-8">
-              <TabsList className="rounded-full p-1">
+              <TabsList ref={tabsListRef} className="rounded-full p-1">
                 <TabsTrigger value="monthly" className="rounded-full px-6">
                   Monthly
                 </TabsTrigger>
