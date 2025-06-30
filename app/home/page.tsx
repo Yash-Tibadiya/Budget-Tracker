@@ -10,6 +10,7 @@ import Features from "./_components/Features";
 import TrustedBy from "./_components/TrustedBy";
 import HowItWorks from "./_components/HowItWorks";
 import Testimonials from "./_components/Testimonials";
+import CategorySelector from "./_components/CategorySelector";
 
 export default function LandingPage() {
   return (
@@ -21,6 +22,9 @@ export default function LandingPage() {
 
         {/* Logos Section */}
         <TrustedBy />
+
+        {/* Category Selector Section */}
+        <CategorySelector />
 
         {/* Features Section */}
         <Features />
