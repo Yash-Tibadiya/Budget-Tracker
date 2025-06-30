@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/accordion";
 import { faqs } from "../data/faq";
 import { motion } from "framer-motion";
-import Aurora from "./Animation/Aurora";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "next-themes";
+import Aurora from "./Animation/Aurora";
 
 const Faq = () => {
   const { resolvedTheme } = useTheme();

@@ -14,10 +14,8 @@ import {
   SvgResPiggyBank,
   SvgX,
 } from "@/components/Icons";
+import Aurora from "./Animation/Aurora";
 import { useTheme } from "next-themes";
-import dynamic from "next/dynamic";
-
-const Aurora = dynamic(() => import("./Animation/Aurora"), { ssr: false });
 
 const Footer = () => {
   const { resolvedTheme } = useTheme();
