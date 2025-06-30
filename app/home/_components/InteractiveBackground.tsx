@@ -5,10 +5,12 @@ import { useEffect, useRef } from "react";
 
 const InteractiveBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -18,7 +20,7 @@ const InteractiveBackground: React.FC = () => {
     let mouseY = 0;
 
     const particles: Particle[] = [];
-    const particleCount = 100;
+    const particleCount = 150;
 
     class Particle {
       x: number;
@@ -27,8 +29,6 @@ const InteractiveBackground: React.FC = () => {
       speedX: number;
       speedY: number;
       color: string;
-      radiusX: number;
-      radiusY: number;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
@@ -36,14 +36,13 @@ const InteractiveBackground: React.FC = () => {
         this.size = Math.random() * 5 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
-        this.radiusX = this.size * (1 + Math.random() * 0.5); // Vary radiusX
-        this.radiusY = this.size * (1 - Math.random() * 0.5); // Vary radiusY
         this.color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
           Math.random() * 255
         )}, 255, 0.7)`;
       }
 
       update() {
+        // Keep the exact same movement logic as your working version
         this.x += this.speedX + (mouseX - canvas!.width / 2) * 0.01;
         this.y += this.speedY + (mouseY - canvas!.height / 2) * 0.01;
 
@@ -54,20 +53,13 @@ const InteractiveBackground: React.FC = () => {
       draw() {
         ctx!.fillStyle = this.color;
         ctx!.beginPath();
-        ctx!.ellipse(
-          this.x,
-          this.y,
-          this.radiusX,
-          this.radiusY,
-          0,
-          0,
-          Math.PI * 2
-        );
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx!.fill();
       }
     }
 
     const init = () => {
+      particles.length = 0; // Clear existing particles
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -83,31 +75,46 @@ const InteractiveBackground: React.FC = () => {
     };
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Get the container's actual size
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+
+      // Reinitialize particles when size changes
+      init();
     };
 
     const handleMouseMove = (event: MouseEvent) => {
+      // Keep the same global mouse tracking as your working version
       mouseX = event.clientX;
       mouseY = event.clientY;
     };
 
+    // Initial setup
     handleResize();
-    init();
     animate();
 
     window.addEventListener("resize", handleResize);
     window.addEventListener("mousemove", handleMouseMove);
 
+    // Also listen for container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(container);
+
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10" />
+    <div ref={containerRef} className="absolute inset-0 w-full h-full -z-10">
+      <canvas ref={canvasRef} className="w-full h-full" />
+    </div>
   );
 };
 
