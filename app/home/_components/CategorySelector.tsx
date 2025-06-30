@@ -33,7 +33,6 @@ const Categories = [
   "Pension",
 ];
 
-
 const transitionProps = {
   type: "spring",
   stiffness: 500,
@@ -54,8 +53,8 @@ export default function CategorySelector() {
 
   return (
     <div className="w-full py-16 md:py-0 md:pt-24 bg-transparent">
-      <h1 className="text-white text-2xl md:text-3xl font-semibold mb-12 text-center">
-        What are your favorite Categorys?
+      <h1 className="text-black dark:text-white text-3xl md:text-4xl font-bold tracking-tight mb-12 text-center">
+        What are your favorite Categories?
       </h1>
       <div className="max-w-[570px] mx-auto">
         <motion.div
@@ -79,17 +78,12 @@ export default function CategorySelector() {
                 animate={{
                   backgroundColor: isSelected
                     ? "#2a1711"
-                    : "rgba(39, 39, 42, 0.5)",
+                    : "rgba(0, 0, 0, 0.05)",
                 }}
                 whileHover={{
                   backgroundColor: isSelected
                     ? "#2a1711"
-                    : "rgba(39, 39, 42, 0.8)",
-                }}
-                whileTap={{
-                  backgroundColor: isSelected
-                    ? "#1f1209"
-                    : "rgba(39, 39, 42, 0.9)",
+                    : "rgba(0, 0, 0, 0.1)",
                 }}
                 transition={{
                   type: "spring",
@@ -100,13 +94,16 @@ export default function CategorySelector() {
                 }}
                 className={`
                   inline-flex items-center px-4 py-2 rounded-full text-base font-medium
-                  whitespace-nowrap overflow-hidden ring-1 ring-inset
+                  whitespace-nowrap overflow-hidden ring-1 ring-inset 
                   ${
                     isSelected
                       ? "text-[#ff9066] ring-[hsla(0,0%,100%,0.12)]"
-                      : "text-zinc-400 ring-[hsla(0,0%,100%,0.06)]"
+                      : "dark:text-zinc-400 text-zinc-700 dark:ring-[hsla(0,0%,100%,0.06)] ring-orange-500/30 dark:bg-zinc-800/50 bg-gray-100/50 dark:hover:bg-zinc-700/80 hover:bg-gray-200/80"
                   }
                 `}
+                style={{
+                  backgroundColor: isSelected ? "#2a1711" : undefined, // Let Tailwind classes handle the background
+                }}
               >
                 <motion.div
                   className="relative flex items-center"
