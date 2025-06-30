@@ -1,14 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { Check, ArrowRight, Star } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,10 +14,10 @@ import Features from "./_components/Features";
 import HowItWorks from "./_components/HowItWorks";
 
 import { trustedCompanies } from "./data/trusted-companies";
-import { faqs } from "./data/faq";
 import { pricingPlans } from "./data/pricing-plans";
 import { testimonials } from "./data/testimonials";
 import Footer from "./_components/Footer";
+import Faq from "./_components/Faq";
 
 export default function LandingPage() {
   return (
@@ -297,56 +290,7 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
-              <Badge
-                className="rounded-full px-4 py-1.5 text-sm font-medium"
-                variant="secondary"
-              >
-                FAQ
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Frequently Asked Questions
-              </h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Find answers to common questions about our platform.
-              </p>
-            </motion.div>
-
-            <div className="mx-auto max-w-3xl">
-              <Accordion type="single" collapsible className="w-full">
-                {faqs.map((faq, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                  >
-                    <AccordionItem
-                      value={`item-${i}`}
-                      className="border-b border-border/40 py-2"
-                    >
-                      <AccordionTrigger className="text-left font-medium hover:no-underline">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  </motion.div>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
+        <Faq />
 
         {/* CTA Section */}
         <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
@@ -387,7 +331,8 @@ export default function LandingPage() {
                 </Button>
               </div>
               <p className="text-sm text-primary-foreground/80 mt-4">
-                No credit card required. 14-day free trial. Cancel anytime.
+                No credit card required. Unlimited free trial. Export data
+                anytime.
               </p>
             </motion.div>
           </div>

@@ -5,9 +5,7 @@ import React from "react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
-import Logo from "@/components/Logo";
 import Link from "next/link";
-import { HardDrive, PiggyBankIcon } from "lucide-react";
 import {
   SvgDiscord,
   SvgGitHub,
@@ -16,10 +14,31 @@ import {
   SvgResPiggyBank,
   SvgX,
 } from "@/components/Icons";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+
+const Aurora = dynamic(() => import("./Animation/Aurora"), { ssr: false });
 
 const Footer = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   return (
     <footer className="w-full border-t bg-background/95 backdrop-blur-sm">
+
+      {/* Aurora background effect */}
+      {isDark && (
+      <div className="absolute inset-0 -z-10">
+        <Aurora
+          colorStops={["#3b8Ff6", "#000000", "#e53935"]}
+          // colorStops={["#4338ca", "#3b82f6", "#2dd4bf"]}
+          blend={0.2}
+          amplitude={1.6}
+          speed={0.6}
+        />
+      </div>
+      )}
+      
       <div className="mx-auto max-w-7xl flex flex-col gap-4 px-4 py-10 md:px-6 lg:py-16 lg:pb-10 ">
         <div className="grid gap-6 xl:gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">

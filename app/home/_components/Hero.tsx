@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SvgArrow } from "@/components/Icons";
-import InteractiveBackground from "./InteractiveBackground";
+import InteractiveBackground from "./Animation/InteractiveBackground";
 
 const Hero = () => {
   return (
@@ -53,7 +53,7 @@ const Hero = () => {
             </div>
             <div className="flex items-center gap-1">
               <Check className="size-4 text-primary" />
-              <span>Unlimited trial</span>
+              <span>Unlimited free trial</span>
             </div>
             <div className="flex items-center gap-1">
               <Check className="size-4 text-primary" />
