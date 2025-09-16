@@ -23,8 +23,7 @@ const runtimeCaching = [
 // Configure next-pwa (uses Workbox under the hood)
 const withPWA = createNextPWA({
   dest: "public",
-  // Enable PWA in dev when PWA_ENABLED=true (useful for testing)
-  disable: process.env.NODE_ENV === "development" && process.env.PWA_ENABLED !== "true",
+  disable: process.env.NODE_ENV === "development",
   register: true,
   skipWaiting: true,
   runtimeCaching,
