@@ -2,7 +2,16 @@ import { authMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export default authMiddleware({
-  publicRoutes: ["/home"],
+  publicRoutes: [
+    "/home",
+    "/offline",
+    "/manifest.webmanifest",
+    "/logo.png",
+    "/logo-removebg-preview.png",
+    "/hero_saas.png",
+    "/placeholder-logo.svg",
+    "/api/ping",
+  ],
   afterAuth(auth, req) {
     const url = new URL(req.url);
 
